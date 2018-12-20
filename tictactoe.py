@@ -1,7 +1,7 @@
 import sys
 
 
-def display_board(linboard):
+def display_board(board):
     line_board = ""
     for line1_item in range(7, 10):
         if line1_item == 9:
@@ -56,10 +56,18 @@ def new_game():
 
 def player_turn():
     global play_count
+
     print("Player {} , choose a position from 1 - 9".format(current_player))
+    valid_input = "123456789"
     play = input()
+    if play not in valid_input:
+        print("\n"*100)
+        print("**Not a valid play. Try again.**")
+        display_board(board)
+        return False
+
     play = int(play)
-    if play not in plays and (play <= 9) and (play > 0):
+    if play > 0 and play <= 9:
         return play
     else:
         print("\n"*100)
